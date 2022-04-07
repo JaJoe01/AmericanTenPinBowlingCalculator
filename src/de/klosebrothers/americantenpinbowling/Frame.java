@@ -3,9 +3,9 @@ package de.klosebrothers.americantenpinbowling;
 import java.util.ArrayList;
 
 public class Frame {
-    public ArrayList<ThrowAttempt> throwAttempts = new ArrayList<>();
-    public boolean spare;
-    public int score;
+    private ArrayList<ThrowAttempt> throwAttempts = new ArrayList<>();
+    private boolean spare;
+    private int score;
 
     public boolean isSpare() {
         return false;
@@ -15,11 +15,11 @@ public class Frame {
         return false;
     }
 
-    public void addThrowAttempt() {
+    public void addThrowAttempt(ThrowAttempt throwAttempt) {
 
     }
 
-    public void addScore() {
+    public void addScore(int score) {
 
     }
 

@@ -1,8 +1,8 @@
 package de.klosebrothers.americantenpinbowling;
 
 public class ThrowAttempt {
-    public boolean strike;
-    public int knockedDown;
+    private boolean strike;
+    private int knockedDown;
 
     public ThrowAttempt(int knockedDown) {
 

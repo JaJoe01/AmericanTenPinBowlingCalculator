@@ -3,10 +3,14 @@ package de.klosebrothers.americantenpinbowling;
 import java.util.ArrayList;
 
 public class Game {
-    public ArrayList<Frame> frames = new ArrayList<>();
-    public int entirePoints;
+    private ArrayList<Frame> frames = new ArrayList<>();
+    private int entirePoints;
 
     public Game(ArrayList<String> throwInput) {
+
+    }
+
+    public Game() {
 
     }
 
@@ -31,5 +35,7 @@ public class Game {
     }
 
 
-
+    public ArrayList<Frame> getFrames() {
+        return null;
+    }
 }

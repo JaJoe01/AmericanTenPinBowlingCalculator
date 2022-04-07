@@ -15,69 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestScenarios {
 
     @Test
-    public void testScenarioInvalidInputSizeTooBig() {
-        ArrayList<String> input =
-                new ArrayList<>(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"));
-        Assertions.assertThrows(InvalidInputSizeException.class, () -> {
-            Game game = new Game(input);
-        });
-    }
-
-    @Test
-    public void testScenarioInvalidInputSizeTooSmall() {
-        ArrayList<String> input =
-                new ArrayList<>(Arrays.asList("X", "X", "X"));
-        Assertions.assertThrows(InvalidInputSizeException.class, () -> {
-            Game game = new Game(input);
-        });
-    }
-
-    @Test
-    public void testScenarioInvalidCharacterInput() {
-        ArrayList<String> input =
-                new ArrayList<>(Arrays.asList("c", "X", "X", "f", "X", "X", "X", "X", "X", "X", "X", "X"));
-        Assertions.assertThrows(InvalidCharacterException.class, () -> {
-            Game game = new Game(input);
-        });
-    }
-
-    @Test
-    public void testScenarioNullInput() {
-        ArrayList<String> input = null;
-        Assertions.assertThrows(Exception.class, () -> {
-            Game game = new Game(input);
-        });
-    }
-
-    @Test
-    public void testScenarioSpareAndStrike() {
-        ArrayList<String> input =
-                new ArrayList<>(Arrays.asList("/", "X", "X", "/", "X", "X", "X", "X", "X", "X", "X", "X"));
-        Assertions.assertThrows(InvalidCharacterCombinationException.class, () -> {
-            Game game = new Game(input);
-        });
-    }
-
-    @Test
-    public void testScenarioFirstSpare() {
-        ArrayList<String> input =
-                new ArrayList<>(Arrays.asList("/", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"));
-        Assertions.assertThrows(InvalidCharacterCombinationException.class, () -> {
-            Game game = new Game(input);
-        });
-    }
-
-    @Test
-    public void testScenarioFrameOverload() {
-        ArrayList<String> input =
-                new ArrayList<>(Arrays.asList("9", "6", "1", "3", "7", "1", "8", "9", "5", "2", "4", "1", "7", "1", "2", "4", "1", "8", "3", "4"));
-                //Würfe wie 9 6 und 8 9 sind unmöglich da > 10
-        Assertions.assertThrows(InvalidCharacterCombinationException.class, () -> {
-            Game game = new Game(input);
-        });
-    }
-
-    @Test
     public void testScenarioNormalCaseOne() {
         ArrayList<String> input =
                 new ArrayList<>(Arrays.asList("4", "/", "X", "3", "/", "X", "6", "2", "X", "X", "X", "1", "7"));
