@@ -5,9 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ThrowAttemptTest {
@@ -32,16 +29,6 @@ class ThrowAttemptTest {
     }
 
     @Test
-    public void testNull() {
-
-        //TODO
-        int knockedDown = 0;
-        Assertions.assertThrows(NullPointerException.class, () -> {
-            ThrowAttempt throwAttempt = new ThrowAttempt(knockedDown);
-        });
-    }
-
-    @Test
     public void testZero() {
         Assertions.assertDoesNotThrow(() -> new ThrowAttempt(0));
     }
@@ -55,20 +42,20 @@ class ThrowAttemptTest {
 
 
     @Test
-    public void testIsStrikeMaxValue() {
+    public void testIsStrikeMaxValue() throws ValueOutOfRangeException {
         ThrowAttempt throwAttempt = new ThrowAttempt(10);
         assertTrue(throwAttempt.isStrike());
     }
 
     @Test
-    public void testIsStrikeOutOfRange() {
+    public void testIsStrikeOutOfRange() throws ValueOutOfRangeException {
         ThrowAttempt throwAttempt = new ThrowAttempt(4);
         assertFalse(throwAttempt.isStrike());
     }
 
 
     @Test
-    public void testGetNockedDowns() {
+    public void testGetNockedDowns() throws ValueOutOfRangeException {
         ThrowAttempt throwAttempt = new ThrowAttempt(5);
         Assertions.assertEquals(5, throwAttempt.getKnockedDowns());
     }

@@ -21,34 +21,34 @@ class GameTest {
     }
 
     @Test
-    public void testIndentifyThrowAttemptKnownValue() {
+    public void testIndentifyThrowAttemptKnownValue() throws ValueOutOfRangeException, InvalidCharacterException, InvalidCharacterCombinationException {
         char throwAttemptInput = "7".charAt(0);
         Game game = new Game();
         ThrowAttempt expectedThrowAttempt = new ThrowAttempt(7);
         ThrowAttempt actualThrowAttempt = game.identifyThrowAttempt(throwAttemptInput);
-        assertEquals(expectedThrowAttempt, actualThrowAttempt);
+        assertEquals(expectedThrowAttempt.getKnockedDowns(), actualThrowAttempt.getKnockedDowns());
     }
 
     @Test
-    public void testIndentifyThrowAttemptStrike() {
+    public void testIndentifyThrowAttemptStrike() throws ValueOutOfRangeException, InvalidCharacterException, InvalidCharacterCombinationException {
         char throwAttemptInput = "x".charAt(0);
         Game game = new Game();
         ThrowAttempt expectedThrowAttempt = new ThrowAttempt(10);
         ThrowAttempt actualThrowAttempt = game.identifyThrowAttempt(throwAttemptInput);
-        assertEquals(expectedThrowAttempt, actualThrowAttempt);
+        assertEquals(expectedThrowAttempt.isStrike(), actualThrowAttempt.isStrike());
     }
 
     @Test
-    public void testIdentifyThrwoAttemptsMiss() {
+    public void testIdentifyThrwoAttemptsMiss() throws ValueOutOfRangeException, InvalidCharacterException, InvalidCharacterCombinationException {
         char throwAttemptInput = "-".charAt(0);
         Game game = new Game();
         ThrowAttempt expectedThrowAttempt = new ThrowAttempt(0);
         ThrowAttempt actualThrowAttempt = game.identifyThrowAttempt(throwAttemptInput);
-        assertEquals(expectedThrowAttempt, actualThrowAttempt);
+        assertEquals(expectedThrowAttempt.getKnockedDowns(), actualThrowAttempt.getKnockedDowns());
     }
 
     @Test
-    public void testIndentifyThrowAttemptSpare() {
+    public void testIndentifyThrowAttemptSpare() throws ValueOutOfRangeException, InvalidCharacterCombinationException, InvalidCharacterException {
         Game gameOne = new Game();
         ThrowAttempt throwAttemptOne = new ThrowAttempt(4);
         ThrowAttempt throwAttemptTwo = new ThrowAttempt(6);
@@ -61,21 +61,12 @@ class GameTest {
         gameTwo.addThrowAttempt(throwAttemptOne);
         gameTwo.addThrowAttempt(gameTwo.identifyThrowAttempt(throwAttemptInput));
         Frame actualFrame = gameTwo.getFrames().get(0);
-        assertEquals(expectedFrame, actualFrame);
+        assertEquals(expectedFrame.isSpare(), actualFrame.isSpare());
     }
 
     @Test
     public void testIdentifyThrowAttemptNull() {
         //TODO
-    }
-
-    @Test
-    public void testIdentifyThrowAttemptOversizedInput() {
-        char throwAttemptInput = "11".charAt(0);
-        Game game = new Game();
-        Assertions.assertThrows(ValueOutOfRangeException.class, () -> {
-            game.identifyThrowAttempt(throwAttemptInput);
-        });
     }
 
     @Test
@@ -102,6 +93,7 @@ class GameTest {
         Assertions.assertThrows(Exception.class, () -> {
             Game game = new Game(input);
         });
+        //TODO
     }
 
     @Test

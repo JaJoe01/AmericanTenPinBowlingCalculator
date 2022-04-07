@@ -1,18 +1,24 @@
 package de.klosebrothers.americantenpinbowling;
 
 public class ThrowAttempt {
-    private boolean strike;
-    private int knockedDown;
+    private final boolean strike;
+    private final int knockedDowns;
 
-    public ThrowAttempt(int knockedDown) {
-
+    public ThrowAttempt(int knockedDowns) throws ValueOutOfRangeException {
+        boolean inRange = knockedDowns <= 10 && knockedDowns >= 0;
+        if (inRange) {
+            this.knockedDowns = knockedDowns;
+            strike = isStrike();
+        } else {
+            throw new ValueOutOfRangeException();
+        }
     }
 
     public boolean isStrike() {
-        return false;
+        return knockedDowns == 10;
     }
 
     public int getKnockedDowns() {
-        return 0;
+        return knockedDowns;
     }
 }

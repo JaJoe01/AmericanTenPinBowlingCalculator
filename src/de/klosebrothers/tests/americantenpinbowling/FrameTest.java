@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FrameTest {
 
     @Test
-    public void testIsSpareNotSpare() {
+    public void testIsSpareNotSpare() throws ValueOutOfRangeException {
         Frame frame = new Frame();
         ThrowAttempt throwAttemptOne = new ThrowAttempt(1);
         ThrowAttempt throwAttemptTwo = new ThrowAttempt(4);
@@ -23,7 +23,7 @@ class FrameTest {
     }
 
     @Test
-    public void testIsSpareNotSpareButStrike() {
+    public void testIsSpareNotSpareButStrike() throws ValueOutOfRangeException {
         Frame frame = new Frame();
         ThrowAttempt throwAttempt = new ThrowAttempt(10);
         frame.addThrowAttempt(throwAttempt);
@@ -31,7 +31,7 @@ class FrameTest {
     }
 
     @Test
-    public void testIsSpareSpare(){
+    public void testIsSpareSpare() throws ValueOutOfRangeException {
         Frame frame = new Frame();
         ThrowAttempt throwAttemptOne = new ThrowAttempt(3);
         ThrowAttempt throwAttemptTwo = new ThrowAttempt(7);
@@ -41,7 +41,7 @@ class FrameTest {
     }
 
     @Test
-    public void testContainsStrikeFalse(){
+    public void testContainsStrikeFalse() throws ValueOutOfRangeException {
         Frame frame = new Frame();
         ThrowAttempt throwAttemptOne = new ThrowAttempt(3);
         ThrowAttempt throwAttemptTwo = new ThrowAttempt(7);
@@ -51,7 +51,7 @@ class FrameTest {
     }
 
     @Test
-    public void testContainsStrikeTrue(){
+    public void testContainsStrikeTrue() throws ValueOutOfRangeException {
         Frame frame = new Frame();
         ThrowAttempt throwAttemptOne = new ThrowAttempt(10);
         ThrowAttempt throwAttemptTwo = new ThrowAttempt(7);
@@ -61,17 +61,12 @@ class FrameTest {
     }
 
     @Test
-    public void testAddThrowAttempt(){
+    public void testAddThrowAttempt() throws ValueOutOfRangeException {
         Frame frame = new Frame();
         ThrowAttempt throwAttempt = new ThrowAttempt(3);
         frame.addThrowAttempt(throwAttempt);
         int index = frame.getThrowAttempts().size() - 1;
         assertEquals(throwAttempt, frame.getThrowAttempts().get(index));
-    }
-
-    @Test
-    public void testAddScoreNull(){
-        //TODO
     }
 
     @Test
@@ -86,7 +81,7 @@ class FrameTest {
     public void testAddScorePositiveOutOfRange(){
         Frame frame = new Frame();
         Assertions.assertThrows(ValueOutOfRangeException.class, () -> {
-            frame.addScore(21);
+            frame.addScore(31);
         });
     }
 
@@ -102,14 +97,16 @@ class FrameTest {
     }
 
     @Test
-    public void testGetThrowAttempts(){
+    public void testGetThrowAttempts() throws ValueOutOfRangeException {
         Frame frame = new Frame();
         ThrowAttempt throwAttemptOne = new ThrowAttempt(3);
         ThrowAttempt throwAttemptTwo = new ThrowAttempt(5);
         frame.addThrowAttempt(throwAttemptOne);
         frame.addThrowAttempt(throwAttemptTwo);
         ThrowAttempt[] expectedThrowAttempts = {throwAttemptOne, throwAttemptTwo};
-        ThrowAttempt[] actualThrowAttempts = (ThrowAttempt[]) frame.getThrowAttempts().toArray();
+        ThrowAttempt[] actualThrowAttempts = new ThrowAttempt[2];
+        actualThrowAttempts[0] =frame.getThrowAttempts().get(0);
+        actualThrowAttempts[1] =frame.getThrowAttempts().get(1);
         assertArrayEquals(expectedThrowAttempts,actualThrowAttempts);
     }
 }
