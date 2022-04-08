@@ -48,7 +48,7 @@ class GameTest {
     }
 
     @Test
-    public void testIndentifyThrowAttemptSpare() throws ValueOutOfRangeException, InvalidCharacterCombinationException, InvalidCharacterException {
+    public void testIndentifyThrowAttemptSpare() throws ValueOutOfRangeException, InvalidCharacterCombinationException, InvalidCharacterException, InvalidInputSizeException {
         Game gameOne = new Game();
         ThrowAttempt throwAttemptOne = new ThrowAttempt(4);
         ThrowAttempt throwAttemptTwo = new ThrowAttempt(6);
@@ -65,14 +65,18 @@ class GameTest {
     }
 
     @Test
-    public void testIdentifyThrowAttemptNull() {
-        //TODO
-    }
-
-    @Test
     public void testGameInvalidInputSizeTooBig() {
         ArrayList<String> input =
                 new ArrayList<>(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"));
+        Assertions.assertThrows(InvalidInputSizeException.class, () -> {
+            Game game = new Game(input);
+        });
+    }
+
+    @Test
+    public void testGameInvalidInputSizeIncompleteFrame() {
+        ArrayList<String> input =
+                new ArrayList<>(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X", "8"));
         Assertions.assertThrows(InvalidInputSizeException.class, () -> {
             Game game = new Game(input);
         });
@@ -90,10 +94,9 @@ class GameTest {
     @Test
     public void testGameNullInput() {
         ArrayList<String> input = null;
-        Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(NullPointerException.class, () -> {
             Game game = new Game(input);
         });
-        //TODO
     }
 
     @Test

@@ -4,10 +4,6 @@ import de.klosebrothers.americantenpinbowling.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class FrameTest {
@@ -73,7 +69,7 @@ class FrameTest {
     public void testAddScoreNegative(){
         Frame frame = new Frame();
         Assertions.assertThrows(ValueOutOfRangeException.class, () -> {
-            frame.addScore(-1);
+            frame.setScore(-1);
         });
     }
 
@@ -81,20 +77,16 @@ class FrameTest {
     public void testAddScorePositiveOutOfRange(){
         Frame frame = new Frame();
         Assertions.assertThrows(ValueOutOfRangeException.class, () -> {
-            frame.addScore(31);
+            frame.setScore(31);
         });
     }
 
     @Test
     public void testAddScorePositiveInRange(){
         Frame frame = new Frame();
-        Assertions.assertDoesNotThrow(() -> frame.addScore(4));
+        Assertions.assertDoesNotThrow(() -> frame.setScore(4));
     }
 
-    @Test
-    public void testGetThrowAttemptsNull(){
-        //TODO
-    }
 
     @Test
     public void testGetThrowAttempts() throws ValueOutOfRangeException {
